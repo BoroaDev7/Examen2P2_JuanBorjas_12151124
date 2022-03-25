@@ -61,6 +61,11 @@ public class Main extends javax.swing.JFrame {
         jPanel1.add(planeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 30));
 
         jCheckBox1.setText("Publicos");
+        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -97,6 +102,11 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+        // TODO add your handling code here:
+        AgregarPublicos();
+    }//GEN-LAST:event_jCheckBox1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,6 +160,13 @@ public class Main extends javax.swing.JFrame {
         publicos.add(marte);
         publicos.add(jupiter);
         publicos.add(saturno);
+        publicos.add(urano);
+        publicos.add(neptuno);
+        
+        for (Planetas publico : publicos) {
+        DefaultMutableTreeNode hijos=new DefaultMutableTreeNode(publico);
+            root.add(hijos);
+        }
 
     }
 
