@@ -25,6 +25,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         cargarCientificos();
+         AgregarPublicos(); 
         ActualizarCombo();
     }
 
@@ -141,16 +142,15 @@ public class Main extends javax.swing.JFrame {
 
     private void boxPublicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxPublicosMouseClicked
         // TODO add your handling code here:
-        if(boxPublicos.isSelected()){
-       
-        AgregarPublicos();
-           BorrarNodos();  
+        boolean gato=true;
+        if(gato && boxPublicos.isSelected()){
+
         ActualizarArbol();
-        
+        gato=false;
         }
         else {
           BorrarNodos();
-            
+            gato=true;
         }
         
         
@@ -269,7 +269,7 @@ public class Main extends javax.swing.JFrame {
         publicos.add(new Gaseoso(300000,30000,"Saturno",560,450));
         publicos.add(new Gaseoso(200000,20000,"Urano",670,690));
         publicos.add(new Gaseoso(200000,20000,"Neptuno",840,900));
-        
+        publicos.add(new Terrestre(777777,77777,"Planeta Vegeta",777,777));
     }
     private void ActualizarArbol(){
         DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
