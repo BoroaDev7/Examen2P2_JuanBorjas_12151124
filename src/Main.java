@@ -24,6 +24,8 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        cargarCientificos();
+        ActualizarCombo();
     }
 
     /**
@@ -140,10 +142,14 @@ public class Main extends javax.swing.JFrame {
     private void boxPublicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxPublicosMouseClicked
         // TODO add your handling code here:
         if(boxPublicos.isSelected()){
+       
         AgregarPublicos();
+           BorrarNodos();  
+        ActualizarArbol();
+        
         }
-        else{
-            arbolPlanetas.removeAll();
+        else {
+          BorrarNodos();
             
         }
         
@@ -182,16 +188,22 @@ public class Main extends javax.swing.JFrame {
 
     private void aniadirCientificoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniadirCientificoMouseClicked
         // TODO add your handling code here:
-        Cientificos ciencia=new Cientificos(nombreCientifico.getText());
-       cientifico.add(ciencia);
-      DefaultComboBoxModel combo=(DefaultComboBoxModel)cajaCientificos.getModel();
-      combo.removeAllElements(); 
-      combo.addElement(ciencia);
-       cajaCientificos.setModel(combo);
-       
+     
+       cientifico.add(new Cientificos(nombreCientifico.getText()));
+      ActualizarCombo();
+       AgregarCientificos();
+       nombreCientifico.setText("");
        
     }//GEN-LAST:event_aniadirCientificoMouseClicked
 
+    private void ActualizarCombo(){
+        DefaultComboBoxModel combo=(DefaultComboBoxModel)cajaCientificos.getModel();
+      combo.removeAllElements(); 
+        for (Cientificos cienti : cientifico) {
+      combo.addElement(cienti);
+              }
+       cajaCientificos.setModel(combo);  
+    }
     /**
      * @param args the command line arguments
      */
@@ -228,7 +240,7 @@ public class Main extends javax.swing.JFrame {
     }
     private void AgregarCientificos(){
          try{
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("./carros.keneth"));
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("./cientificos.Juan"));
             for (Cientificos cienti :cientifico )
                 os.writeObject(cienti);
         }catch(Exception ex){
@@ -247,9 +259,8 @@ public class Main extends javax.swing.JFrame {
         }
     }
     private void AgregarPublicos(){
-        DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
-        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas");
-       
+        
+      
         publicos.add(new Terrestre(5000,13000,"Mercurio",400,300));
         publicos.add(new Terrestre(100000,15000,"Venus",640,260));
         publicos.add(new Terrestre(140000,17000,"Tierra",760,570));
@@ -259,11 +270,24 @@ public class Main extends javax.swing.JFrame {
         publicos.add(new Gaseoso(200000,20000,"Urano",670,690));
         publicos.add(new Gaseoso(200000,20000,"Neptuno",840,900));
         
+    }
+    private void ActualizarArbol(){
+        DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
+        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas"); 
+           
         for (Planetas publico : publicos) {
         DefaultMutableTreeNode hijos=new DefaultMutableTreeNode(publico);
-            root.add(hijos);
+          
+        root.add(hijos);    
         }
-
+        arbolito.setRoot(root);
+    }
+    private void BorrarNodos(){
+        DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
+        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas"); 
+    
+        arbolito.setRoot(root);
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
