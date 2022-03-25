@@ -30,6 +30,9 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        opcionesPlaneta = new javax.swing.JPopupMenu();
+        opcionPlaneta1 = new javax.swing.JMenuItem();
+        opcionPlaneta2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
@@ -37,13 +40,24 @@ public class Main extends javax.swing.JFrame {
         arbolPlanetas = new javax.swing.JTree();
         planeta2 = new javax.swing.JTextField();
         planeta1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        boxPublicos = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         cajaCientificos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        opcionPlaneta1.setText("Planeta 1");
+        opcionPlaneta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionPlaneta1ActionPerformed(evt);
+            }
+        });
+        opcionesPlaneta.add(opcionPlaneta1);
+
+        opcionPlaneta2.setText("Planeta 2");
+        opcionesPlaneta.add(opcionPlaneta2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,19 +68,24 @@ public class Main extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Planetas");
         arbolPlanetas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbolPlanetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbolPlanetasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(arbolPlanetas);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 210, 320));
         jPanel1.add(planeta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 180, 30));
         jPanel1.add(planeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 30));
 
-        jCheckBox1.setText("Publicos");
-        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+        boxPublicos.setText("Publicos");
+        boxPublicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jCheckBox1MouseClicked(evt);
+                boxPublicosMouseClicked(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+        jPanel1.add(boxPublicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Cientificos");
@@ -103,10 +122,41 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+    private void boxPublicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxPublicosMouseClicked
         // TODO add your handling code here:
+        if(boxPublicos.isSelected()){
         AgregarPublicos();
-    }//GEN-LAST:event_jCheckBox1MouseClicked
+        }
+        else{
+            arbolPlanetas.removeAll();
+            
+        }
+        
+        
+    }//GEN-LAST:event_boxPublicosMouseClicked
+
+    private void arbolPlanetasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolPlanetasMouseClicked
+        // TODO add your handling code here:
+        if(evt.isMetaDown()){
+             opcionesPlaneta.show(evt.getComponent(), evt.getX(), evt.getY());
+             int row=arbolPlanetas.getClosestRowForLocation(evt.getX(), evt.getY());
+            arbolPlanetas.setSelectionRow(row);
+            Object paps=arbolPlanetas.getSelectionPath().getLastPathComponent();
+            nodoSeleccionado=(DefaultMutableTreeNode)paps;
+             if(nodoSeleccionado.getUserObject() instanceof Planetas){
+                planetaSeleccionado=(Planetas)nodoSeleccionado.getUserObject();
+            }
+        }
+        
+    }//GEN-LAST:event_arbolPlanetasMouseClicked
+
+    private void opcionPlaneta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionPlaneta1ActionPerformed
+        // TODO add your handling code here:
+         DefaultTreeModel modelo=(DefaultTreeModel)arbolPlanetas.getModel();
+         String planet1=planetaSeleccionado.getNombre();
+         
+        
+    }//GEN-LAST:event_opcionPlaneta1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,10 +222,10 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPlanetas;
+    private javax.swing.JCheckBox boxPublicos;
     private javax.swing.JComboBox<String> cajaCientificos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -183,9 +233,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JMenuItem opcionPlaneta1;
+    private javax.swing.JMenuItem opcionPlaneta2;
+    private javax.swing.JPopupMenu opcionesPlaneta;
     private javax.swing.JTextField planeta1;
     private javax.swing.JTextField planeta2;
     // End of variables declaration//GEN-END:variables
  private ArrayList<Planetas>publicos=new ArrayList();
  private ArrayList<Planetas>descubiertos=new ArrayList();
+DefaultMutableTreeNode nodoSeleccionado;
+Planetas planetaSeleccionado;
+
 }
