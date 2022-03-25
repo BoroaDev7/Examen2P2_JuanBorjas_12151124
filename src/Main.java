@@ -208,22 +208,15 @@ public class Main extends javax.swing.JFrame {
     private void AgregarPublicos(){
         DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
         DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas");
-        Planetas mercurio=new Planetas("Terrestre",5000,13000,"Mercurio",400,300);
-        Planetas venus = new Planetas("Terrestre",100000,15000,"Venus",640,260);
-        Planetas tierra= new Planetas("Terrestre",140000,17000,"Tierra",760,570);
-        Planetas marte= new Planetas("Terrestre",90000,12000,"Marte",360,360);
-        Planetas jupiter=new Planetas("Gaseoso",400000,40000,"Jupiter",340,310);
-        Planetas saturno=new Planetas("Gaseoso",300000,30000,"Saturno",560,450);
-        Planetas urano=new Planetas("Gaseoso",200000,20000,"Urano",670,690);
-        Planetas neptuno=new Planetas("Gaseoso",00000,20000,"Neptuno",840,900);
-        publicos.add(mercurio);
-        publicos.add(venus);
-        publicos.add(tierra);
-        publicos.add(marte);
-        publicos.add(jupiter);
-        publicos.add(saturno);
-        publicos.add(urano);
-        publicos.add(neptuno);
+       
+        publicos.add(new Terrestre(5000,13000,"Mercurio",400,300));
+        publicos.add(new Terrestre(100000,15000,"Venus",640,260));
+        publicos.add(new Terrestre(140000,17000,"Tierra",760,570));
+        publicos.add(new Terrestre(90000,12000,"Marte",360,360));
+        publicos.add(new Gaseoso(400000,40000,"Jupiter",340,310));
+        publicos.add(new Gaseoso(300000,30000,"Saturno",560,450));
+        publicos.add(new Gaseoso(200000,20000,"Urano",670,690));
+        publicos.add(new Gaseoso(200000,20000,"Neptuno",840,900));
         
         for (Planetas publico : publicos) {
         DefaultMutableTreeNode hijos=new DefaultMutableTreeNode(publico);

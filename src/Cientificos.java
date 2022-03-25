@@ -1,8 +1,10 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Cientificos {
+public class Cientificos implements Serializable {
+    
     private String nombre;
     private ArrayList<Planetas>planetasDescubiertos=new ArrayList();
 

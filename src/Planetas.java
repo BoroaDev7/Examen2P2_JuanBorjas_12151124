@@ -1,15 +1,15 @@
 
 public class Planetas {
     
-    private String nombre,tipo;
+    private String nombre;
     private int tamanio,peso,coordenadaX,coordenadaY;
 
     public Planetas() {
     }
 
-    public Planetas( String tipo, int tamanio, int peso,String nombre, int coordenadaX, int coordenadaY) {
+    public Planetas( int tamanio, int peso,String nombre, int coordenadaX, int coordenadaY) {
         this.nombre = nombre;
-        this.tipo = tipo;
+    
         this.tamanio = tamanio;
         this.peso = peso;
         this.coordenadaX = coordenadaX;
@@ -24,13 +24,6 @@ public class Planetas {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
     public int getTamanio() {
         return tamanio;
