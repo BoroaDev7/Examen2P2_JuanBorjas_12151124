@@ -1,3 +1,8 @@
+
+import java.util.ArrayList;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -5,7 +10,7 @@
 
 /**
  *
- * @author famil
+ * @author Juan Manuel Borjas Figueroa
  */
 public class Main extends javax.swing.JFrame {
 
@@ -25,17 +30,69 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        arbolPlanetas = new javax.swing.JTree();
+        planeta2 = new javax.swing.JTextField();
+        planeta1 = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        cajaCientificos = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 60));
+        jPanel1.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 700, 60));
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Planetas");
+        arbolPlanetas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(arbolPlanetas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 210, 320));
+        jPanel1.add(planeta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 180, 30));
+        jPanel1.add(planeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 30));
+
+        jCheckBox1.setText("Publicos");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Cientificos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 120, 30));
+
+        jPanel1.add(cajaCientificos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 180, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 180, 30));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Añadir Cientificos");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 180, 30));
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setText("Colisionar");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 180, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -75,7 +132,43 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void AgregarPublicos(){
+        DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
+        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas");
+        Planetas mercurio=new Planetas("Terrestre",5000,13000,"Mercurio",400,300);
+        Planetas venus = new Planetas("Terrestre",100000,15000,"Venus",640,260);
+        Planetas tierra= new Planetas("Terrestre",140000,17000,"Tierra",760,570);
+        Planetas marte= new Planetas("Terrestre",90000,12000,"Marte",360,360);
+        Planetas jupiter=new Planetas("Gaseoso",400000,40000,"Jupiter",340,310);
+        Planetas saturno=new Planetas("Gaseoso",300000,30000,"Saturno",560,450);
+        Planetas urano=new Planetas("Gaseoso",200000,20000,"Urano",670,690);
+        Planetas neptuno=new Planetas("Gaseoso",00000,20000,"Neptuno",840,900);
+        publicos.add(mercurio);
+        publicos.add(venus);
+        publicos.add(tierra);
+        publicos.add(marte);
+        publicos.add(jupiter);
+        publicos.add(saturno);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree arbolPlanetas;
+    private javax.swing.JComboBox<String> cajaCientificos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField planeta1;
+    private javax.swing.JTextField planeta2;
     // End of variables declaration//GEN-END:variables
+ private ArrayList<Planetas>publicos=new ArrayList();
+ private ArrayList<Planetas>descubiertos=new ArrayList();
 }
