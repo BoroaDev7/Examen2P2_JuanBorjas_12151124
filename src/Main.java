@@ -1,5 +1,10 @@
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -44,8 +49,8 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cajaCientificos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        nombreCientifico = new javax.swing.JTextField();
+        aniadirCientifico = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         opcionPlaneta1.setText("Planeta 1");
@@ -101,12 +106,17 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 180, 30));
+        jPanel1.add(nombreCientifico, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 180, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Añadir Cientificos");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 180, 30));
+        aniadirCientifico.setBackground(new java.awt.Color(0, 153, 153));
+        aniadirCientifico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        aniadirCientifico.setText("Añadir Cientificos");
+        aniadirCientifico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aniadirCientificoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(aniadirCientifico, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 180, 30));
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -170,6 +180,18 @@ public class Main extends javax.swing.JFrame {
          
     }//GEN-LAST:event_opcionPlaneta2ActionPerformed
 
+    private void aniadirCientificoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniadirCientificoMouseClicked
+        // TODO add your handling code here:
+        Cientificos ciencia=new Cientificos(nombreCientifico.getText());
+       cientifico.add(ciencia);
+      DefaultComboBoxModel combo=(DefaultComboBoxModel)cajaCientificos.getModel();
+      combo.removeAllElements(); 
+      combo.addElement(ciencia);
+       cajaCientificos.setModel(combo);
+       
+       
+    }//GEN-LAST:event_aniadirCientificoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -204,7 +226,26 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    private void AgregarCientificos(){
+         try{
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("./carros.keneth"));
+            for (Cientificos cienti :cientifico )
+                os.writeObject(cienti);
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
     
+    private void cargarCientificos(){
+        try{
+            ObjectInputStream os = new ObjectInputStream(new FileInputStream("./cientificos.Juan"));
+            Cientificos cienti;
+            while( (cienti = (Cientificos)os.readObject()) != null )
+                cientifico.add(cienti);
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
     private void AgregarPublicos(){
         DefaultTreeModel arbolito=(DefaultTreeModel)arbolPlanetas.getModel();
         DefaultMutableTreeNode root=new DefaultMutableTreeNode("Planetas");
@@ -226,10 +267,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aniadirCientifico;
     private javax.swing.JTree arbolPlanetas;
     private javax.swing.JCheckBox boxPublicos;
     private javax.swing.JComboBox<String> cajaCientificos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -237,7 +278,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nombreCientifico;
     private javax.swing.JMenuItem opcionPlaneta1;
     private javax.swing.JMenuItem opcionPlaneta2;
     private javax.swing.JPopupMenu opcionesPlaneta;
@@ -248,5 +289,5 @@ public class Main extends javax.swing.JFrame {
  private ArrayList<Planetas>descubiertos=new ArrayList();
 DefaultMutableTreeNode nodoSeleccionado;
 Planetas planetaSeleccionado;
-
+ArrayList<Cientificos>cientifico=new ArrayList();
 }
