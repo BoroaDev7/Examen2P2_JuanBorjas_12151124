@@ -57,6 +57,11 @@ public class Main extends javax.swing.JFrame {
         opcionesPlaneta.add(opcionPlaneta1);
 
         opcionPlaneta2.setText("Planeta 2");
+        opcionPlaneta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionPlaneta2ActionPerformed(evt);
+            }
+        });
         opcionesPlaneta.add(opcionPlaneta2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,9 +159,16 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
          DefaultTreeModel modelo=(DefaultTreeModel)arbolPlanetas.getModel();
          String planet1=planetaSeleccionado.getNombre();
-         
+         planeta1.setText(planet1);
         
     }//GEN-LAST:event_opcionPlaneta1ActionPerformed
+
+    private void opcionPlaneta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionPlaneta2ActionPerformed
+        // TODO add your handling code here:
+        String planet2=planetaSeleccionado.getNombre();
+         planeta2.setText(planet2);
+         
+    }//GEN-LAST:event_opcionPlaneta2ActionPerformed
 
     /**
      * @param args the command line arguments
